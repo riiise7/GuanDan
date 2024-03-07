@@ -1,6 +1,7 @@
 from math import floor
 from enum import IntEnum
 
+
 from typing import List, Optional, Tuple, Union
 
 '''
