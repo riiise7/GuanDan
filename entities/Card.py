@@ -84,6 +84,28 @@ class CombType(IntEnum):
     StraightFlush = 7
     Bomb = 8
     
+    def __str__(self) -> str:
+        if self.value == -1:
+            return "Pass"
+        if self.value == 0:
+            return "Single"
+        if self.value == 1:
+            return "Pair"
+        if self.value == 2:
+            return "Trips"
+        if self.value == 3:
+            return "ThreePair"
+        if self.value == 4:
+            return "ThreeWithTwo"
+        if self.value == 5:
+            return "TwoTrips"
+        if self.value == 6:
+            return "Straight"
+        if self.value == 7:
+            return "StraightFlush"
+        if self.value == 8:
+            return "Bomb"
+        raise ValueError("Invalid self.value!!!")     
 
 class CardComb(object):
     
@@ -103,7 +125,7 @@ class CardComb(object):
                 for attribute in cards:
                     self.cards.append(Card(attribute))
     
-    def to_nplist(self) -> np.ndarray:
+    def to_ndarray(self) -> np.ndarray:
         pass
     
     def __str__(self) -> str:
@@ -111,34 +133,27 @@ class CardComb(object):
         案例1：
         self.combo_type = CombType.Pair
         self.cards = [Card(10, H), Card(10, D)]
-        输出：['Pair','HT','DT']
+        输出：[Pair,HT,DT]
         案例2：
         self.combo_type = CombType.Single
         self.cards = [Card(14, N)]
-        输出：['Single','SB']
+        输出：[Single,SB]
         案例3：
         self.combo_type = PASS
         self.cards = None
-        输出：['None']
+        输出：[None]
         '''
-        str_comb = ''
-        if self.combo_type == CombType.Single:
-            str_comb = str_comb +  str(CombType.Single) + str(self.cards)
-        elif self.combo_type == CombType.Pair:
-            str_comb = str_comb +  str(CombType.Pair) + str(self.cards)
-        elif self.combo_type == CombType.Trips:
-            str_comb = str_comb +  str(CombType.Trips) + str(self.cards)
-        elif self.combo_type == CombType.ThreePair:
-            str_comb = str_comb +  str(CombType.ThreePair) + str(self.cards)
-        elif self.combo_type == CombType.ThreeWithTwo:
-            str_comb = str_comb +  str(CombType.ThreeWithTwo) + str(self.cards)
-        elif self.combo_type == CombType.TwoTrips:
-            str_comb = str_comb +  str(CombType.TwoTrips) + str(self.cards)
-        elif self.combo_type == CombType.Straight:
-            str_comb = str_comb +  str(CombType.Straight) + str(self.cards)
-        elif self.combo_type == CombType.StraightFlush:
-            str_comb = str_comb +  str(CombType.StraightFlush) + str(self.cards)
-        elif self.combo_type == CombType.Bomb:
-            str_comb = str_comb +  str(CombType.Bomb) + str(self.cards)
+        if self.comb_type == CombType.PASS:
+            return "[None]"
+        
+        str_comb = "["
+        str_comb += str(self.comb_type)
+        str_comb += ","
+        
+        for card in self.cards:
+            str_comb += str(card)
+            str_comb += ","
+        str_comb = str_comb.rstrip(str_comb[-1])
+        str_comb += "]"
+        
         return str_comb
-        pass
