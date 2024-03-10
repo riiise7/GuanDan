@@ -1,3 +1,5 @@
+import numpy as np
+
 from math import floor
 from enum import IntEnum
 
@@ -22,6 +24,7 @@ class CardDecor(IntEnum):
 class Card(object):
     
     def __init__(self, card_atrributes : Tuple[int, CardDecor]):
+        assert card_atrributes[0] <= 15 and card_atrributes[0] >= 1
         self.card_number = card_atrributes[0]
         self.card_decor = card_atrributes[1]
     
@@ -99,3 +102,23 @@ class CardComb(object):
                 assert isinstance(cards[0][1], CardDecor)
                 for attribute in cards:
                     self.cards.append(Card(attribute))
+    
+    def to_nplist(self) -> np.ndarray:
+        pass
+    
+    def __str__(self) -> str:
+        '''
+        案例1：
+        self.combo_type = CombType.Pair
+        self.cards = [Card(10, H), Card(10, D)]
+        输出：['Pair','HT','DT']
+        案例2：
+        self.combo_type = CombType.Single
+        self.cards = [Card(14, N)]
+        输出：['Single','SB']
+        案例3：
+        self.combo_type = PASS
+        self.cards = None
+        输出：['None']
+        '''
+        pass
