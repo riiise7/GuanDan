@@ -126,6 +126,10 @@ class CardComb(object):
                     self.cards.append(Card(attribute))
     
     def to_ndarray(self) -> np.ndarray:
+        if self.cards == None:
+            return np.array([-1])
+        shape = (len(self.cards),)
+
         pass
     
     def __str__(self) -> str:
