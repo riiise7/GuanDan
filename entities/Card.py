@@ -121,4 +121,24 @@ class CardComb(object):
         self.cards = None
         输出：['None']
         '''
+        str_comb = ''
+        if self.combo_type == CombType.Single:
+            str_comb = str_comb +  str(CombType.Single) + str(self.cards)
+        elif self.combo_type == CombType.Pair:
+            str_comb = str_comb +  str(CombType.Pair) + str(self.cards)
+        elif self.combo_type == CombType.Trips:
+            str_comb = str_comb +  str(CombType.Trips) + str(self.cards)
+        elif self.combo_type == CombType.ThreePair:
+            str_comb = str_comb +  str(CombType.ThreePair) + str(self.cards)
+        elif self.combo_type == CombType.ThreeWithTwo:
+            str_comb = str_comb +  str(CombType.ThreeWithTwo) + str(self.cards)
+        elif self.combo_type == CombType.TwoTrips:
+            str_comb = str_comb +  str(CombType.TwoTrips) + str(self.cards)
+        elif self.combo_type == CombType.Straight:
+            str_comb = str_comb +  str(CombType.Straight) + str(self.cards)
+        elif self.combo_type == CombType.StraightFlush:
+            str_comb = str_comb +  str(CombType.StraightFlush) + str(self.cards)
+        elif self.combo_type == CombType.Bomb:
+            str_comb = str_comb +  str(CombType.Bomb) + str(self.cards)
+        return str_comb
         pass
