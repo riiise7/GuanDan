@@ -3,7 +3,7 @@ import numpy as np
 from typing import List, Optional
 from enum import IntEnum
 
-from Card import Card
+from entities.Card import Card
 
 class MessageType(IntEnum):
     NOTIFY = 0

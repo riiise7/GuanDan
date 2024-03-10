@@ -3,7 +3,7 @@ import numpy as np
 from enum import IntEnum
 from abc import abstractmethod
 
-from Message import Message
+from entities.Message import Message
 
 class PlayerType(IntEnum):
     RULE_BASE = 0

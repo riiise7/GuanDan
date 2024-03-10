@@ -2,9 +2,9 @@ import numpy as np
 
 from typing import List, Tuple, Optional
 
-from Player import GuanDanAI, Player
-from Message import Message, MessageType
-from Card import Card, CardDecor, CardComb
+from entities.Player import GuanDanAI, Player
+from entities.Message import Message, MessageType
+from entities.Card import Card, CardDecor, CardComb
 
 class GuanDanServer(object):
     
