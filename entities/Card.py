@@ -129,9 +129,8 @@ class CardComb(object):
         if self.cards == None:
             return np.array([-1])
         shape = (len(self.cards),)
-        dtype = object
-        array_comb = np.empty(shape, dtype)
-        for i in range(len(self.cards)):
+        array_comb = np.empty(shape, dtype=Card)
+        for i in range(shape[0]):
             array_comb[i] = self.cards[i]
         return array_comb
 
