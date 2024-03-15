@@ -25,7 +25,11 @@ class Card(object):
     
     def __init__(self, card_atrributes : Tuple[int, CardDecor]):
         assert card_atrributes[0] <= 15 and card_atrributes[0] >= 1
+        # 卡数是从1到15。
+        # 1对应的是2，2对应的是3，直到13对应的是A，14和15分别对应小王和大王
         self.card_number = card_atrributes[0]
+        
+        # 卡的花色，小王和大王没有花色
         self.card_decor = card_atrributes[1]
     
     @classmethod
@@ -35,7 +39,21 @@ class Card(object):
             return (value - 38, CardDecor(4))
         card_number = value % 13 + 1
         return (card_number, CardDecor(card_decor))
-        
+    
+    @classmethod
+    def card_number_to_level(cls, value : int) -> str:
+        assert value <= 13 and value >= 1
+        if value < 9:
+            return str(value + 1)
+        if value == 9:
+            return "T"
+        if value == 10:
+            return "J"
+        if value == 11:
+            return "Q"
+        if value == 12:
+            return "K"
+        return "A"
     
     def __str__(self) -> str:
         if self.card_number >= 14:
@@ -64,6 +82,8 @@ class Card(object):
                     answer += "K"
                 else:
                     answer += "A"
+            else:
+                answer += str(self.card_number)
             
             return answer
     
@@ -124,8 +144,11 @@ class CardComb(object):
                 assert isinstance(cards[0][1], CardDecor)
                 for attribute in cards:
                     self.cards.append(Card(attribute))
+            
+            
+            
     
-    def to_ndarray(self) -> np.ndarray:
+    def to_ndarray(self) -> np.ndarray[Card]:
         if self.cards == None:
             return np.array([-1])
         shape = (len(self.cards),)
