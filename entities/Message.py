@@ -23,10 +23,13 @@ class NotifyMessage(Message):
         self.message : Message = message
 
     def to_json_str(self) -> str:
+        message_json_dict = json.loads(self.message.to_json_str())
         json_dict = {
-            'src_id': -1,
-            'dsct_id': self.dsct_player_id,
+            'type': "Notify",
+            'notify_src_id': -1,
+            'notify_dsct_id': self.dsct_player_id,
         }
+        json_dict.update(message_json_dict)
         return json.dumps(json_dict)
 
 class PlayCardMessage(Message):
@@ -37,7 +40,6 @@ class PlayCardMessage(Message):
         self.cardcomb : CardComb = cardcomb
 
     def to_json_str(self) -> str:
-
         pass
 
 class TributeMessage(Message):
