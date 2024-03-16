@@ -4,7 +4,7 @@ from enum import IntEnum
 from abc import abstractmethod
 from typing import Optional, List
 
-from entities.Message import Message, NotifyMessage
+from entities.Message import Message, NotifyMessage, PlayCardMessage, TributeMessage, AntiTributeMessage
 from entities.Card import Card
 
 class PlayerType(IntEnum):
@@ -25,6 +25,10 @@ class Player(object):
     def receive_message(self, message : Message) -> None:
         raise RuntimeError("This is an abstract method!")
 
+    @abstractmethod
+    def send_message(self, message : Message, player_id : int) -> None:
+        raise RuntimeError("This is an abstract method!")
+
 class GuanDanAI(Player):
     
     def __init__(self, player_id : int):
@@ -34,9 +38,14 @@ class GuanDanAI(Player):
     def receive_message(self, message: Message) -> None:
         if isinstance(message, NotifyMessage):
             pass
-            
+        elif isinstance(message, PlayCardMessage):
+            pass
+
+    def send_message(self, message: Message, player_id: int) -> None:
+        pass
     
     def add_cards(self, cards : List[Card]):
+        assert cards is not None
         for card in cards:
             self.cards.append(Card([card.card_number, card.card_decor]))
 
@@ -45,5 +54,8 @@ class Dealer(Player):
     def __init__(self):
         super().__init__(-1, player_type=PlayerType.DEALER)
         
-    def receive_messae(self, message : Message) -> None:
+    def receive_message(self, message : Message) -> None:
+        pass
+
+    def send_message(self, message: Message, player_id: int) -> None:
         pass

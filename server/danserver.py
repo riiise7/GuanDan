@@ -2,8 +2,8 @@ import numpy as np
 
 from typing import List, Tuple, Optional
 
-from entities.Player import GuanDanAI, Player
-from entities.Message import Message, MessageType
+from entities.Player import GuanDanAI, Player, Dealer
+from entities.Message import Message
 from entities.Card import Card, CardDecor, CardComb
 
 class GuanDanServer(object):
@@ -11,6 +11,7 @@ class GuanDanServer(object):
     def __init__(self):
         # 玩家列表，按顺序是[0号，1号，2号，3号]
         # 中途玩家可以退出，换新玩家上场，但必须在本次游戏结束后
+        self.dealer = Dealer()
         self.player_list : List[Optional[Player]] = [None] * 4
         self.is_playing : bool = False
         
