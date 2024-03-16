@@ -148,7 +148,7 @@ class CardComb(object):
             
             
     
-    def to_ndarray(self) -> np.ndarray[Card]:
+    def to_ndarray(self) -> np.ndarray:
         if self.cards == None:
             return np.array([-1])
         shape = (len(self.cards),)
