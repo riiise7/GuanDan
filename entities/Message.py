@@ -25,7 +25,7 @@ class NotifyMessage(Message):
     def to_json_str(self) -> str:
         message_json_dict = json.loads(self.message.to_json_str())
         json_dict = {
-            'type': "Notify",
+            'is_notify': True,
             'notify_src_id': -1,
             'notify_dsct_id': self.dsct_player_id,
         }
@@ -59,4 +59,8 @@ class AntiTributeMessage(Message):
         super().__init__(src_player_ids[0], src_player_ids[1])
 
     def to_json_str(self) -> str:
-        pass
+        json_dict = {
+            'type': "AntiTribute",
+            'antiribute_src_id': self.src_player_id,
+            'antitribute_dsct_id': self.dsct_player_id,
+        }
