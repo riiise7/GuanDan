@@ -64,3 +64,4 @@ class AntiTributeMessage(Message):
             'antiribute_src_id': self.src_player_id,
             'antitribute_dsct_id': self.dsct_player_id,
         }
+        return json.dumps(json_dict)
