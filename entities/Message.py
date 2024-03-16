@@ -50,7 +50,14 @@ class TributeMessage(Message):
         self.card : Card = card
 
     def to_json_str(self) -> str:
-        pass
+        json_dict = {
+            'type': "Tribute",
+            'tribute_src_id': self.src_player_id,
+            'tribute_dsct_id': self.dsct_player_id,
+            'tribute_card': str(self.card)
+        }
+        
+        return json.dumps(json_dict)
 
 class AntiTributeMessage(Message):
 
@@ -61,7 +68,7 @@ class AntiTributeMessage(Message):
     def to_json_str(self) -> str:
         json_dict = {
             'type': "AntiTribute",
-            'antiribute_src_id': self.src_player_id,
+            'antitibute_src_id': self.src_player_id,
             'antitribute_dsct_id': self.dsct_player_id,
         }
         return json.dumps(json_dict)
